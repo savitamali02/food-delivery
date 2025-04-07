@@ -425,12 +425,10 @@ footer .icons:hover{
 footer .calling{
     font-size: 1.4rem;
     font-weight: 800;
-    color:#f7be27
+   
 
 }
-footer .calling:hover{
-    color:black;
-}
+
 
 footer ul li{
     display: inline-block;
@@ -445,10 +443,7 @@ footer ul li{
     padding: 20px 0;
  }
 
- footer .copy_right ul li span{
-      color:#e3000e;
-      font-weight: 600;
- }
+ 
  footer .copy_right ul li span:hover{
     color:black;
     
