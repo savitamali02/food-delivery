@@ -422,10 +422,13 @@ footer pre:hover{
 footer .icons:hover{
     color: #f7be27;
 }
+
 footer .calling{
-    font-size: 1.4rem;
-    font-weight: 800;
-   
+    font-size: 1.2rem;
+}
+footer .calling:hover{
+    
+    color:#f7be27
 
 }
 
@@ -443,7 +446,6 @@ footer ul li{
     padding: 20px 0;
  }
 
- 
  footer .copy_right ul li span:hover{
     color:black;
     
