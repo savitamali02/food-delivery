@@ -6,10 +6,14 @@ import Menu from "./pages/Home/Menu";
 import Shop from "./pages/Home/Shop";
 import Blog from "./pages/Home/Blog";
 import Contact from "./pages/Home/Contact";
+import CartProvider from "./pages/Home/CartContext";
+import Cart from "./pages/Home/Cart";
 //import Header from "../components/layout/Header";
+
 
 function App() {
   return (
+    <CartProvider>
     <Router>
       <Routes>
         <Route path="/" element={<Home/>}/>
@@ -18,10 +22,11 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
-        
+        <Route path="/cart" element={<Cart/>}/>
       </Routes>
 
     </Router>
+    </CartProvider>
   );
 }
 

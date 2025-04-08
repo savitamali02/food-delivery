@@ -168,7 +168,7 @@
     font-size:1rem ;
 }
 
-.menu_section .add_to_card a{
+.menu_section .add_to_card button{
     background: #f7be27;
     color: black;
     display: inline-block;
@@ -184,13 +184,14 @@
      -ms-transition:all 500ms ease-in-out;
      -o-transition: ll 500ms ease-in-out;
      transition:all 500ms ease-in-out;
+     border: none;
 }
 
 .menu_section .card:hover .card-img-top{
      transform: scale(1.1);
 }
 
-.menu_section .card:hover .add_to_card a{
+.menu_section .card:hover .add_to_card button{
     transform: translateY(0px);
     opacity: 1;
 }

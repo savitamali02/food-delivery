@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
+import React, {useContext,useState} from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import "../../styles/HeaderStyle.css";
 import { Link } from 'react-router-dom';
+import { CartContext } from '../../pages/Home/CartContext';
 import Logo from "../../assets/logo/logo.png";
 
 function Header() {
    const [nav, setNav] = useState(false);
+   const { cartItems } = useContext(CartContext);
 
    //scroll navbar
    const changeValueOnScroll = () =>{
@@ -36,10 +38,10 @@ function Header() {
                             <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
 
                             {/* ✅ Fix for Cart Link */}
-                            <Nav.Link as={Link} to="/">
+                            <Nav.Link as={Link} to="/cart">
                                 <div className="cart">
                                     <i className="bi bi-bag fs-5"></i>
-                                    <em className="roundpoint">2</em>
+                                    <em className="roundpoint">{cartItems.length}</em>
                                 </div>
                             </Nav.Link>
 

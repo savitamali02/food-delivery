@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
   // Mock Data Cards
   const mockData = [
     {
-      id: "0001",
+      id: "101",
       image: Image1,
       title: "Crispy Chicken",
       paragraph: "Chicken breast, chilli sauce, tomatoes, pickles, coleslaw",
@@ -22,7 +22,7 @@ import { Link } from 'react-router-dom';
       price: 150,
     },
     {
-      id: "0002",
+      id: "102",
       image: Image2,
       title: "Ultimate Bacon",
       paragraph: "House patty, cheddar cheese, bacon, onion, mustard",
@@ -30,7 +30,7 @@ import { Link } from 'react-router-dom';
       price: 99,
     },
     {
-      id: "0003",
+      id: "103",
       image: Image3,
       title: "Black Sheep",
       paragraph: "American cheese, tomato relish, avocado, lettuce, red onion",
@@ -38,7 +38,7 @@ import { Link } from 'react-router-dom';
       price: 69,
     },
     {
-      id: "0004",
+      id: "104",
       image: Image4,
       title: "Vegan Burger",
       paragraph: "House patty, cheddar cheese, bacon, onion, mustard",
@@ -46,7 +46,7 @@ import { Link } from 'react-router-dom';
       price: 99,
     },
     {
-      id: "0005",
+      id: "105",
       image: Image5,
       title: "Double Burger",
       paragraph: "2 patties, cheddar cheese, mustard, pickles, tomatoes",
@@ -54,7 +54,7 @@ import { Link } from 'react-router-dom';
       price: 59,
     },
     {
-      id: "0006",
+      id: "106",
       image: Image6,
       title: "Turkey Burger",
       paragraph: "Turkey, cheddar cheese, onion, lettuce, tomatoes, pickles",
@@ -62,7 +62,7 @@ import { Link } from 'react-router-dom';
       price: 90,
     },
     {
-      id: "0007",
+      id: "107",
       image: Image7,
       title: "Smokey House",
       paragraph: "patty, cheddar cheese, onion, lettuce, tomatoes, pickles",
@@ -70,7 +70,7 @@ import { Link } from 'react-router-dom';
       price: 99,
     },
     {
-      id: "0008",
+      id: "108",
       image: Image8,
       title: "Classic Burger",
       paragraph: "cheddar cheese, ketchup, mustard, pickles, onion",
@@ -116,7 +116,8 @@ function Section3() {
             <Row>
                 {mockData.map((cardData, index) =>(
                   <Cards
-                  key={index}
+                  key={cardData.id}
+                  id={cardData.id}
                   image={cardData.image}
                   rating={cardData.rating}
                   title={cardData.title}
