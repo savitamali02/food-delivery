@@ -16,6 +16,8 @@ function Footer() {
     const windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
     windowScroll > heightToHidden ? setVisible(true) : setVisible(false);
    }
+   const currentYear = new Date().getFullYear();
+
 
    useEffect(()=>{
     window.addEventListener("scroll",listenToScroll );
@@ -83,28 +85,29 @@ function Footer() {
         <Row className='copy_right'>
           <Col>
           <div>
-            <ul className='list-unstyled text-center mb-0'>
-            <li>
-                <Link to="/" className='icons'>
-                © 2025 <span>TASTY BURGER </span>. All Rights Reserved.
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className='icons'>
-                About Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className='icons'>
-                Terms Of Use
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className='icons'>
-                Privacy Policy
-                </Link>
-              </li>
-            </ul>
+          <ul className='list-unstyled text-center mb-0'>
+  <li>
+    <Link to="/" className='icons'>
+      © {currentYear} <span>TASTY BURGER </span>. All Rights Reserved.
+    </Link>
+  </li>
+  <li>
+    <Link to="/" className='icons'>
+      About Us
+    </Link>
+  </li>
+  <li>
+    <Link to="/" className='icons'>
+      Terms Of Use
+    </Link>
+  </li>
+  <li>
+    <Link to="/" className='icons'>
+      Privacy Policy
+    </Link>
+  </li>
+</ul>
+
           </div>
           </Col>
         </Row>

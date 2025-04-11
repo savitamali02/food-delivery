@@ -1,0 +1,23 @@
+/* Ensure body spacing is correct */
+body {
+    margin: 0;
+    padding: 0;
+  }
+  .header-space {
+    padding-top: 80px; /* slightly more than header */
+  }
+  /* Example fixed header styling (if used) */
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+  }
+  
+  /* Example fixed footer styling (if used) */
+  footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  

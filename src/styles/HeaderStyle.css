@@ -5,7 +5,11 @@ header .navbar{
     background-color: transparent;
     z-index: 1000;
 }
-
+header {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
 header .navbar.sticky{
     position: fixed;
     left: 0;
@@ -48,7 +52,7 @@ header .logo img{
 header .nav-link{
     display: inline-flex;
     justify-content: center;
-    color:white;
+    color:black;
     padding: 0 1rem !important;
     font-size: 1.125rem;
     font-weight: 500;
@@ -110,3 +114,7 @@ header .roundpoint{
     }
      
 }
+table img {
+    border-radius: 10px;
+  }
+  

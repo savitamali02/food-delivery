@@ -133,7 +133,7 @@ function Section3() {
                 <div className='ads_box ads_img1 mb-5 mb-md-0'>
                     <h4 className='mb-0'>GET YOUR FREE</h4>
                     <h5>CHEESE FRIES</h5>
-                    <Link to="/" className='btn btn_red px-4 rounded-0'>
+                    <Link to="/About" className='btn btn_red px-4 rounded-0'>
                     Learn more
                     </Link>
                 </div>
@@ -142,7 +142,7 @@ function Section3() {
                 <div className='ads_box ads_img2'>
                     <h4 className='mb-0'>GET YOUR FREE</h4>
                     <h5>CHEESE FRIES</h5>
-                    <Link to="/" className='btn btn_red px-4 rounded-0'>
+                    <Link to="/About" className='btn btn_red px-4 rounded-0'>
                     Learn more
                     </Link>
                 </div>
@@ -153,4 +153,4 @@ function Section3() {
   )
 }
 
-export default Section3
+export default Section3;

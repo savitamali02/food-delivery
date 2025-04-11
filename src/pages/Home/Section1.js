@@ -26,7 +26,7 @@ function Section1() {
                         <p className='text-white pt-2 pb-4'>
                         Burgers come in countless variations, with different types of meat, cheese, sauces, and toppings, allowing for a wide range of flavors and preferences. 
                 </p>
-                <Link to="/" className="btn order_now">
+                <Link to="/Menu" className="btn order_now">
                 Order Now
                 </Link>
                     </div>

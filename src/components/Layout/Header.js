@@ -7,7 +7,7 @@ import Logo from "../../assets/logo/logo.png";
 
 function Header() {
    const [nav, setNav] = useState(false);
-   const { cartItems } = useContext(CartContext);
+   const { cartItems, wishlistItems } = useContext(CartContext);
 
    //scroll navbar
    const changeValueOnScroll = () =>{
@@ -33,9 +33,15 @@ function Header() {
                             <Nav.Link as={Link} to="/">Home</Nav.Link>
                             <Nav.Link as={Link} to="/about">About</Nav.Link>
                             <Nav.Link as={Link} to="/menu">Our Menu</Nav.Link>
-                            <Nav.Link as={Link} to="/shop">Shop</Nav.Link>
-                            <Nav.Link as={Link} to="/blog">Blog</Nav.Link>
+                            {/* <Nav.Link as={Link} to="/shop">Shop</Nav.Link> */}
+                            <Nav.Link as={Link} to="/blog">Review</Nav.Link>
                             <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
+                            <Nav.Link as={Link} to="/wishlist">
+                                <div className="wishlist">
+                                    <i className="bi bi-heart fs-5"></i>
+                                    <em className="roundpoint">{wishlistItems.length}</em>
+                                </div>
+                            </Nav.Link>
 
                             {/* ✅ Fix for Cart Link */}
                             <Nav.Link as={Link} to="/cart">

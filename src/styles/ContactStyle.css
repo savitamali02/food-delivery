@@ -4,7 +4,7 @@ body{
 }
 .contact-container {
     max-width: 600px;       /* Control the width */
-    margin: 80px auto;      /* Center horizontally with spacing from top */
+    margin: 120px auto;      /* Center horizontally with spacing from top */
     background: #fff;
     padding: 40px 30px;
     border-radius: 12px;

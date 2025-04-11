@@ -1,17 +1,41 @@
-import React from 'react'
+import React,{useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import "../../styles/ContactStyle.css";
+import Header from '../../components/Layout/Header';
+import Footer from '../../components/Layout/Footer';
 
 
 const Contact= ()=> {
+  const navigate = useNavigate();
+  const [successMsg, setSuccessMsg] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSuccessMsg("Your message has been submitted successfully!");
+
+   
+    setTimeout(() => {
+      navigate('/');
+    }, 3000);
+  };
   return (
     <>
+    <Header/>
   <div className="container d-flex justify-content-center align-items-center min-vh-100">
   <div className="contact-container w-100">
     <div className="text-center mb-4">
-      <h1>Contact Us</h1>
-      <h3>Fill out the form below to get in touch!</h3>
+      <h2>Contact Us</h2>
+      <h4>Fill out the form below to get in touch!</h4>
     </div>
-    <form className="contact-form">
+
+  
+    {successMsg && (
+            <div className="alert alert-success text-center" role="alert">
+              {successMsg}
+            </div>
+          )}
+
+    <form className="contact-form" onSubmit={handleSubmit}>
       <div className="row">
         <div className="col-md-6 mb-3">
           <label htmlFor="first_name">First Name</label>
@@ -36,7 +60,7 @@ const Contact= ()=> {
     </form>
   </div>
 </div>
-
+<Footer/>
    </>
   )
 }

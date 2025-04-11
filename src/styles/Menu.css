@@ -1,0 +1,118 @@
+
+.menu_page {
+    padding-top: 100px;
+    padding-bottom: 60px;
+  }
+  
+  .menu_page .card-img-top {
+    transition: all 500ms ease-in-out;
+    height: 230px; /* ensures uniform image size */
+    object-fit: cover;
+  }
+  
+  .menu_page h2 {
+    font-family: "roboto-font";
+    font-size: 2.5rem;
+    color: #e3000e;
+  }
+  
+  .menu_page .para {
+    font-family: "roboto-font";
+    color: #757575;
+    padding: 10px 100px;
+    font-size: 19px;
+  }
+  
+  .menu_page .item_rating i {
+    color: #f7be27;
+    padding-right: 5px;
+  }
+  
+  .menu_page .wishlist i {
+    color: #757575;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .menu_page .wishlist i:hover {
+    color: #e3000e;
+  }
+  
+  .menu_page .card-title {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .menu_page .card-text {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #757575;
+    font-size: 15px;
+  }
+  
+  .menu_page .menu_price {
+    background-color: #642f21;
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 4px;
+  }
+  
+  .menu_page .menu_price h5 {
+    color: #f7be27;
+    font-size: 1rem;
+    margin: 0;
+  }
+  
+  .menu_page .add_to_card button {
+    background: #f7be27;
+    color: black;
+    display: inline-block;
+    font-size: 1rem;
+    line-height: 1;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 4px;
+    opacity: 0;
+    transform: translateY(100px);
+    -webkit-transition: all 500ms ease-in-out;
+    -moz-transition: all 500ms ease-in-out;
+    -ms-transition: all 500ms ease-in-out;
+    -o-transition: all 500ms ease-in-out;
+    transition: all 500ms ease-in-out;
+    border: none;
+  }
+  
+  .menu_page .card:hover .card-img-top {
+    transform: scale(1.1);
+  }
+  
+  .menu_page .card:hover .add_to_card button {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+
+  /* Base style for nav links */
+.nav-pills .nav-link {
+    background-color: #f7be27; /* Yellow background */
+    color: black;
+    margin: 5px;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 8px 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    outline: none;
+    border: none;
+  }
+  
+  /* Style for active (selected) nav link */
+  .nav-pills .nav-link.active {
+    background-color: #e3000e !important; /* Red background */
+    color: white !important;
+    box-shadow: none;
+  }
+  .nav-pills .nav-link:hover {
+    background-color: #f7be27; /* Same as base background or any color you want */
+    color: black;
+  }
+  

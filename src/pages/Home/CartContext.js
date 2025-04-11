@@ -9,10 +9,20 @@ const CartProvider = ({ children }) => {
     return storedCart ? JSON.parse(storedCart) : [];
   });
 
+  //wishlist
+  const [wishlistItems, setWishlistItems] = useState(() => {
+    const storedWishlist = localStorage.getItem("wishlistItems");
+    return storedWishlist ? JSON.parse(storedWishlist) : [];
+  });
+
   // Save to localStorage whenever cartItems changes
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
+
+  useEffect(() => {
+    localStorage.setItem("wishlistItems", JSON.stringify(wishlistItems));
+  }, [wishlistItems]);
 
   const addToCart = (product) => {
     setCartItems((prevItems) => {
@@ -27,6 +37,21 @@ const CartProvider = ({ children }) => {
         return [...prevItems, { ...product, quantity: 1 }];
       }
     });
+  };
+ 
+  const toggleWishlist = (product) => {
+    const exists = wishlistItems.find((item) => item.id === product.id);
+    if (exists) {
+      setWishlistItems((prevItems) =>
+        prevItems.filter((item) => item.id !== product.id)
+      );
+    } else {
+      setWishlistItems((prevItems) => [...prevItems, product]);
+    }
+  };
+
+  const removeFromWishlist = (id) => {
+    setWishlistItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
   const removeFromCart = (id) => {
@@ -47,7 +72,9 @@ const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, updateQuantity }}
+      value={{ cartItems, addToCart, removeFromCart, updateQuantity, wishlistItems,
+        toggleWishlist,
+        removeFromWishlist }}
     >
       {children}
     </CartContext.Provider>
