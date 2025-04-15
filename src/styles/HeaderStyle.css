@@ -85,7 +85,7 @@ header {
     line-height: 16px;
     text-align: center;
     position: absolute;
-    top: -4px;
+    /* top: -4px; */
     right: -8px;
   }
   
@@ -129,14 +129,13 @@ header {
       width: 100%;
     }
   
-  }*/
+  } */
   
   table img {
     border-radius: 10px;
   }
-   
 
-   /* Header CSS */
+  /* Header CSS */
 /* ... (keep existing styles as they are) ... */
 
 /* Responsive */
@@ -155,7 +154,7 @@ header {
   }
 
   header .navbar.sticky {
-    height: 60px;
+    height: 80px;
   }
 
   header .logo img {
@@ -205,8 +204,9 @@ header {
   }
 
   header .roundpoint {
-    right: 50%;
-    transform: translateX(150%);
+    right: 90%;
+    transform: translatex(150%);
+    
   }
 }
 
@@ -217,5 +217,7 @@ header {
 
   header .navbar {
     padding: 8px 10px !important;
+    gap :34px;
   }
 }
+  
