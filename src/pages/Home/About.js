@@ -5,19 +5,16 @@ import Chef from '../../components/Layout/Chef';
 import "../../styles/About.css";
 import image1 from '../../assets/shop/image-1.jpg';
 import image2 from '../../assets/shop/imge-5.jpg';
-import image3 from '../../assets/shop/image-21.jpg'
+import image3 from '../../assets/shop/image-21.jpg';
 import { CartContext } from '../Home/CartContext';
 import SpecialMenuSlider from '../../components/Layout/SpecialMenuSlider';
-
-
-
 
 const About = () => {
   const { addToCart, wishlistItems, toggleWishlist } = useContext(CartContext);
 
   useEffect(() => {
     const endTime = new Date();
-    endTime.setSeconds(endTime.getSeconds() + 90000); // 1 day, 1 hour, etc.
+    endTime.setSeconds(endTime.getSeconds() + 90000);
 
     const countdown = setInterval(() => {
       const now = new Date().getTime();
@@ -83,14 +80,6 @@ const About = () => {
     }
     return stars;
   };
-  // const [wishlist, setWishlist] = useState({});
-  // const toggleWishlist = (id) => {
-  //   setWishlist((prev) => ({
-  //     ...prev,
-  //     [id]: !prev[id],
-  //   }));
-  // };
-  
 
   return (
     <>
@@ -110,61 +99,57 @@ const About = () => {
               Our delivery process ensures that food quality and hygiene are never compromised. We work with FSSAI-licensed vendors and maintain a strict protocol for packaging, temperature control, and timely delivery. Users can enjoy their favorite meals at a fraction of the cost while being part of a socially impactful initiative. Our QR-based payment options, cart system, and multi-platform access make the experience seamless and convenient.
             </p>
           </div>
-         </div>
-          </div>
+        </div>
+      </div>
 
-              {/* ✅ Today's Special Section */}
-              <div className="todays-special-wrapper">
-              <div className="todays-special-section menu_page container mb-0">
-              <div className="d-flex flex-wrap justify-content-between align-items-center mt-4 mb-4 px-md-6 px-5 gap-5">
-          <h3 className="special-heading mb-0">🍽️ Today’s Special</h3>
-          <div className="d-flex align-items-center gap-2">
-            <h5 className="mb-0">⏳ Ends in:</h5>
-            <div id="countdown-timer" className="countdown-timer mb-0"></div>
+      {/* ✅ Today's Special Section */}
+      <div className="todays-special-wrapper">
+        <div className="todays-special-section menu_page container mb-0">
+          <div className="d-flex flex-wrap justify-content-between align-items-center mt-4 mb-4 px-md-6 px-5 gap-5">
+            <h3 className="special-heading mb-0">🍽️ Today’s Special</h3>
+            <div className="d-flex align-items-center gap-2">
+              <h5 className="mb-0">⏳ Ends in:</h5>
+              <div id="countdown-timer" className="countdown-timer mb-0"></div>
+            </div>
           </div>
-          </div>
-
 
           <div className="row justify-content-center mt-4">
-          {specials.map(item => (
-            <div className="col-md-4 mb-4" key={item.id}>
-              <div className="card h-100 shadow-sm">
-                <div className="overflow-hidden">
-                  <img src={item.image} alt={item.title} className="card-img-top" />
-                </div>
-                <div className="card-body d-flex flex-column">
-                  <div className="d-flex justify-content-between align-items-center mb-2">
-                    <div>{renderRatingIcons(item.rating)}</div>
-                    <div
-                          className="wishlist"
-                          onClick={() => toggleWishlist(item)}
-                          style={{ cursor: 'pointer' }}
-                        >
-                          <i className={`bi ${wishlistItems.some(w => w.id === item.id) ? 'bi-heart-fill text-danger' : 'bi-heart'}`}></i>
-                        </div>
-
-
+            {specials.map(item => (
+              <div className="col-md-4 mb-4" key={item.id}>
+                <div className="card h-100 shadow-sm">
+                  <div className="overflow-hidden">
+                    <img src={item.image} alt={item.title} className="card-img-top" />
                   </div>
-                  <h5 className="card-title">{item.title}</h5>
-                  <p className="card-text">{item.paragraph}</p>
-                  <div className="d-flex justify-content-between align-items-center mt-auto">
-                    <h5 className="mb-0 price">₹{item.price}</h5>
-                    <div className="add_to_card">
-                      <button onClick={() => addToCart(item)}>
-                        <i className="bi bi-bag me-2"></i> Add To Cart
-                      </button>
+                  <div className="card-body d-flex flex-column">
+                    <div className="d-flex justify-content-between align-items-center mb-2">
+                      <div>{renderRatingIcons(item.rating)}</div>
+                      <div
+                        className="wishlist"
+                        onClick={() => toggleWishlist(item)}
+                        style={{ cursor: 'pointer' }}
+                      >
+                        <i className={`bi ${wishlistItems.some(w => w.id === item.id) ? 'bi-heart-fill text-danger' : 'bi-heart'}`}></i>
+                      </div>
+                    </div>
+                    <h5 className="card-title">{item.title}</h5>
+                    <p className="card-text">{item.paragraph}</p>
+                    <div className="d-flex justify-content-between align-items-center mt-auto">
+                      <h5 className="mb-0 price">₹{item.price}</h5>
+                      <div className="add_to_card">
+                        <button onClick={() => addToCart(item)}>
+                          <i className="bi bi-bag me-2"></i> Add To Cart
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
-      </div>
-     
-      <SpecialMenuSlider specials={specials} />
 
+      <SpecialMenuSlider />
       <Chef />
       <Footer />
     </>

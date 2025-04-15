@@ -86,28 +86,8 @@
     font-weight: bold;
     color: #e63946;
   }
-  /* .todays-special-section button{
-    background: #f7be27;
-    color: black;
-    display: inline-block;
-    font-size: 1rem;
-    line-height: 1;
-    font-weight: 700;
-    padding: 8px 14px;
-    border-radius: 4px;
-     opacity: 0;
-     transform: translateY(100px);
-     -webkit-transition: all 500ms ease-in-out;
-     -moz-transition: all 500ms ease-in-out;
-     -ms-transition:all 500ms ease-in-out;
-     -o-transition: ll 500ms ease-in-out;
-     transition:all 500ms ease-in-out;
-     border: none;
-}
-.todays-special-section button{
-  transform: translateY(0px);
-  opacity: 1;
-} */
+  
+
 
 
 .menu_page .add_to_card button {
@@ -182,4 +162,81 @@
   background-color: #f6f9fa;
   padding-bottom: 0 !important;
   margin-bottom: 0 !important;
+}
+/* Timer Section */
+.countdown-timer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+
+.time-segment {
+  display: inline-flex;
+  align-items: baseline;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 4px 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.time-segment span:first-child {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-right: 2px;
+  color: #e63946;
+}
+
+.time-segment span:last-child {
+  font-size: 0.9rem;
+  color: #2A3D7D;
+}
+.time-unit {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2A3D7D;
+}
+
+.time-unit span {
+  font-size: 0.9rem;
+  margin-left: 4px;
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .countdown-timer {
+    gap: 8px;
+  }
+  
+  .time-unit {
+    padding: 4px 8px;
+    font-size: 1.1rem;
+  }
+  
+  .time-unit span {
+    font-size: 0.8rem;
+  }
+}
+/* Mobile Responsive */
+@media (max-width: 576px) {
+  .countdown-timer {
+    gap: 4px;
+  }
+  
+  .time-segment {
+    padding: 2px 4px;
+  }
+  
+  .time-segment span:first-child {
+    font-size: 1rem;
+  }
+  
+  .time-segment span:last-child {
+    font-size: 0.8rem;
+  }
 }
