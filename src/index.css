@@ -39,6 +39,9 @@
   --brown: #6f5e4d;
   --bg-coffee: #642f21;
 }
+body {
+  overflow-x: hidden;
+}
 
 body,
 html {
