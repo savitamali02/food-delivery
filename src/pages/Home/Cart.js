@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Table, Button, Modal, Form, Accordion } from "react-bootstrap";
 import { CartContext } from './CartContext';
 import Header from '../../components/Layout/Header';
@@ -27,14 +27,26 @@ function Cart() {
   const [codPhone, setCodPhone] = useState("");
   const [codOtp, setCodOtp] = useState("");
   const [generatedOtp, setGeneratedOtp] = useState("");
-  const [ ,setCodVerified] = useState(false);
+  const [, setCodVerified] = useState(false);
   const [codStep, setCodStep] = useState(1);
+
+  const [showCodSuccessModal, setShowCodSuccessModal] = useState(false);
 
   const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const finalAmount = selectedPayment === "cod" ? totalAmount + 50 : totalAmount;
 
-  const [showCodSuccessModal, setShowCodSuccessModal] = useState(false);
+  // 🟢 Load addresses from localStorage on mount
+  useEffect(() => {
+    const storedAddresses = localStorage.getItem('deliveryAddresses');
+    if (storedAddresses) {
+      setAddresses(JSON.parse(storedAddresses));
+    }
+  }, []);
 
+  // 🔵 Save addresses to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('deliveryAddresses', JSON.stringify(addresses));
+  }, [addresses]);
 
   const handleVerifyOtp = () => {
     if (otp === "1234") setVerified(true);
@@ -44,7 +56,6 @@ function Cart() {
   return (
     <>
       <Header />
-
       <div className='cart container my-5'>
         {cartItems.length === 0 ? (
           <p>Your cart is empty.</p>
@@ -268,29 +279,21 @@ function Cart() {
                               />
                             </Form.Group>
                             <Button
-                                className="mt-2"
-                                onClick={() => {
-                                  if (codOtp === generatedOtp) {
-                                    setCodVerified(true);
-                                    setCodStep(3);
-                                    setShowPaymentModal(false); // 👈 Close checkout modal
-                                    setShowCodSuccessModal(true); // 👈 Open thank you modal
-                                  } else {
-                                    alert("Invalid OTP. Please try again.");
-                                  }
-                                }}
-                              >
-                                Verify OTP
-                              </Button>
-
-
+                              className="mt-2"
+                              onClick={() => {
+                                if (codOtp === generatedOtp) {
+                                  setCodVerified(true);
+                                  setCodStep(3);
+                                  setShowPaymentModal(false);
+                                  setShowCodSuccessModal(true);
+                                } else {
+                                  alert("Invalid OTP. Please try again.");
+                                }
+                              }}
+                            >
+                              Verify OTP
+                            </Button>
                           </>
-                        )}
-
-                        {codStep === 3 && (
-                          <p className="text-success mt-3">
-                            {/* ✅ Mobile Verified. Order placed successfully! Amount to be paid on delivery: ₹{finalAmount} */}
-                          </p>
                         )}
                       </>
                     ) : (
@@ -311,27 +314,27 @@ function Cart() {
         </Modal.Body>
       </Modal>
 
+      {/* COD Success Modal */}
       <Modal show={showCodSuccessModal} onHide={() => setShowCodSuccessModal(false)} centered>
-  <Modal.Header closeButton>
-    <Modal.Title className="w-100 text-center">Tasty Burger 🍔</Modal.Title>
-  </Modal.Header>
-  <Modal.Body className="text-center">
-    <h5>Order Summary</h5>
-    <ul className="list-unstyled">
-      {cartItems.map(item => (
-        <li key={item.id}>
-          {item.title} x {item.quantity} = ₹{item.price * item.quantity}
-        </li>
-      ))}
-    </ul>
-    <h6 className="mt-3">Total Payable on Delivery: <strong>₹{finalAmount}</strong></h6>
-    <p className="mt-4 text-success">🎉 Thank you for your order! Your tasty meal delivered in 30 minutes.</p>
-  </Modal.Body>
-  <Modal.Footer>
-    <Button variant="success" onClick={() => setShowCodSuccessModal(false)}>Close</Button>
-  </Modal.Footer>
-</Modal>
-
+        <Modal.Header closeButton>
+          <Modal.Title className="w-100 text-center">Tasty Burger 🍔</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="text-center">
+          <h5>Order Summary</h5>
+          <ul className="list-unstyled">
+            {cartItems.map(item => (
+              <li key={item.id}>
+                {item.title} x {item.quantity} = ₹{item.price * item.quantity}
+              </li>
+            ))}
+          </ul>
+          <h6 className="mt-3">Total Payable on Delivery: <strong>₹{finalAmount}</strong></h6>
+          <p className="mt-4 text-success">🎉 Thank you for your order! Your tasty meal delivered in 30 minutes.</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="success" onClick={() => setShowCodSuccessModal(false)}>Close</Button>
+        </Modal.Footer>
+      </Modal>
 
       <Footer />
     </>
