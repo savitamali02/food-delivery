@@ -11,11 +11,16 @@ function Footer() {
     });
   };
 
-   const listenToScroll = () =>{
-    let heightToHidden = 250;
-    const windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    windowScroll > heightToHidden ? setVisible(true) : setVisible(false);
-   }
+  const [scrollPercent, setScrollPercent] = useState(0);
+
+  const listenToScroll = () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const winHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = Math.round((scrollTop / winHeight) * 100);
+    setScrollPercent(scrolled);
+    setVisible(scrollTop > 150); // show only after scrolling a bit
+  };
+  
    const currentYear = new Date().getFullYear();
 
 
@@ -92,7 +97,7 @@ function Footer() {
     </Link>
   </li>
   <li>
-    <Link to="/" className='icons'>
+    <Link to="/about" className='icons'>
       About Us
     </Link>
   </li>
@@ -115,10 +120,19 @@ function Footer() {
     </footer>
 
     {/* scroll to top */} 
-    {isVisible && ( <div className='scroll_top' onClick={scrollTop}>
-      <i className='bi bi-arrow-up'></i>
-     </div>
-    )}
+    {isVisible && (
+  <div className="scroll_top_circle" onClick={scrollTop}>
+    <div
+      className="scroll_progress"
+      style={{
+        background: `conic-gradient(#f7be27 ${scrollPercent}%, rgba(255,255,255,0.1) ${scrollPercent}% 100%)`
+      }}
+    >
+      <i className="bi bi-arrow-up"></i>
+    </div>
+  </div>
+)}
+
     
 
     </>

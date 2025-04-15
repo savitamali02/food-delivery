@@ -75,10 +75,24 @@ body{
     border-color: #e3000e;
   }
   
+  .map-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .map-container {
+    width: 90%;
+    max-width: 900px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
   
   @media (max-width: 576px) {
     .contact-container {
       padding: 20px 15px;
     }
   }
+  
   

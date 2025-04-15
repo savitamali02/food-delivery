@@ -218,7 +218,7 @@ const menuItems = [
     image: image20,
     rating: 3.5,
     title: "Paneer Kathi Roll",
-    paragraph: "eSpiced paneer wrapped in a soft paratha roll.",
+    paragraph: "Spiced paneer wrapped in a soft paratha roll.",
     price: 150,
     category: "Roll",
   },

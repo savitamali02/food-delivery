@@ -29,7 +29,7 @@ const Chefs = () => {
     <section className="chefs" id="chefs">
       <div className="heading">
         {/* <h2>Our Chefs</h2> */}
-        <h2>Our Awesome Chefs'</h2>
+        <h2>Our Awesome Chef's</h2>
       </div>
 
       <div className="chefs-container">

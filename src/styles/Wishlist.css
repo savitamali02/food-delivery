@@ -1,23 +1,33 @@
 /* Ensure body spacing is correct */
 body {
-    margin: 0;
-    padding: 0;
-  }
-  .header-space {
-    padding-top: 80px; /* slightly more than header */
-  }
-  /* Example fixed header styling (if used) */
-  header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 999;
-  }
-  
-  /* Example fixed footer styling (if used) */
-  footer {
-    position: relative;
-    bottom: 0;
-    width: 100%;
-  }
-  
+  margin: 0;
+  padding: 0;
+}
+
+.header-space {
+  padding-top: 80px; /* For fixed header */
+}
+
+/* Example fixed header styling (if used) */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+/* Example fixed footer styling (if used) */
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.wishlist-page {
+  margin-top: 0px;
+}
+
+/* Remove space below h2 */
+.wishlist-page h2 {
+  margin-bottom: 15px;
+}

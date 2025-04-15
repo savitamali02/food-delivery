@@ -10,7 +10,7 @@ function Section7() {
                  <h4>We Gurantee</h4>
                  <h2>30 Minutes Delivery</h2>
                  <p>Craving a juicy burger? We’ve got you covered! Order now and enjoy hot, freshly made burgers delivered to your doorstep in just 30 minutes — satisfaction and speed, guaranteed.</p>
-              <Link to="/" className='btn btn_red px-4 py-2 rounded-0'>
+              <Link to="tel:999-888-7777" className='btn btn_red px-4 py-2 rounded-0'>
                  Call : 999-888-7777
               </Link>
                  </Col>

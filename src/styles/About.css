@@ -125,14 +125,13 @@
   border: none;
 }
 
-.menu_page .card:hover .card-img-top {
-  transform: scale(1.1);
-  transition: transform 0.4s ease-in-out;
+.menu_page .card-img-top {
+  transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-.menu_page .card:hover .add_to_card button {
-  transform: translateY(0px);
-  opacity: 1;
+.menu_page .card:hover .card-img-top {
+  transform: translateX(15px);
+  opacity: 0.6;
 }
 
 .todays-special-section .price{

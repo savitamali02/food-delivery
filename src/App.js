@@ -17,23 +17,28 @@ import "slick-carousel/slick/slick-theme.css";
 //import Header from "../components/layout/Header";
 
 
+import { ParallaxProvider } from 'react-scroll-parallax'; // 👈 import this
+import ScrollToTop from "./components/Layout/ScrollTotop";
+
 function App() {
   return (
     <CartProvider>
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/about" element={<About />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/cart" element={<Cart/>}/>
-      </Routes>
-
-    </Router>
+      <ParallaxProvider> {/* 👈 Wrap everything here */}
+        <Router>
+          <ScrollToTop/>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </Router>
+      </ParallaxProvider>
     </CartProvider>
   );
 }
-
 export default App;
+

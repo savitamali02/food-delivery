@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Header from '../../components/Layout/Header';
 import Footer from '../../components/Layout/Footer';
 import '../../styles/Wishlist.css';
+
 function Wishlist() {
   const { wishlistItems, toggleWishlist, addToCart } = useContext(CartContext);
 
@@ -28,8 +29,8 @@ function Wishlist() {
     <>
       <Header />
       <div className="wishlist-page">
-      <Container className="header-space my-4">
-
+        <Container className="header-space">
+          {/* <h2 className="text-center mb-4">Your Wishlist</h2> */}
           {wishlistItems.length === 0 ? (
             <div className="text-center">
               <p>Your wishlist is empty.</p>
@@ -52,14 +53,14 @@ function Wishlist() {
                   <tr key={item.id}>
                     <td>{index + 1}</td>
                     <td>
-                      <img src={item.image} alt={item.title} style={{ width: '60px' }} />
+                      <img src={item.image} alt={item.title} style={{  height:"60px" }} />
                     </td>
                     <td>{item.title}</td>
                     <td>{item.paragraph}</td>
                     <td>₹{item.price}</td>
                     <td>
                       <Button
-                        variant="outline-danger"
+                        variant="danger"
                         size="sm"
                         onClick={() => removeFromWishlist(item)}
                         className="me-2"
@@ -67,7 +68,7 @@ function Wishlist() {
                         <i className="bi bi-trash"></i> Remove
                       </Button>
                       <Button
-                        variant="outline-success"
+                        variant="success"
                         size="sm"
                         onClick={() => handleAddToCart(item)}
                       >
