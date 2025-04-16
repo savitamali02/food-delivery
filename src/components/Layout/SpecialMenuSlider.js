@@ -1,9 +1,12 @@
-import React from "react";
+import React,{useContext} from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "../../styles/swiper.css";
+
+import { CartContext } from "../../pages/Home/CartContext"; // adjust the path if needed
+
 
 import image1 from "../../assets/shop/image-1.jpg";
 import image2 from "../../assets/shop/imge-5.jpg";
@@ -14,8 +17,8 @@ const SpecialMenuSlider = () => {
   const specialItems = [
     {
       id: 1,
-      title: "Masala Dosa",
-      description: "Spicy stuffed dosa with chutney & sambar.",
+      title: "Idali Sambar",
+      description: "Soft rice cakes with spicy, tangy lentil curry.",
       price: 80,
       image: image1,
     },
@@ -41,6 +44,7 @@ const SpecialMenuSlider = () => {
       image: image4,
     },
   ];
+  const { addToCart } = useContext(CartContext);
 
   return (
     <section className="special-slider-section pb-5 pt-0">
@@ -69,14 +73,14 @@ const SpecialMenuSlider = () => {
   className="mySwiper"
 >
 
-          {specialItems.map((item) => (
-            <SwiperSlide key={item.id}>
-              <div className="special-slide-card">
-                <img src={item.image} alt={item.title} />
-        
-              </div>
-            </SwiperSlide>
-          ))}
+{specialItems.map((item) => (
+  <SwiperSlide key={item.id}>
+    <div className="special-slide-card" onClick={() => addToCart(item)}>
+      <img src={item.image} alt={item.title} style={{ cursor: "pointer" }} />
+    </div>
+  </SwiperSlide>
+))}
+
         </Swiper>
       </div>
     </section>

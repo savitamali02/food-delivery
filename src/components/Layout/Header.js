@@ -1,35 +1,72 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
-import "../../styles/HeaderStyle.css";
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../pages/Home/CartContext';
 import Logo from "../../assets/logo/logo.png";
+import "../../styles/HeaderStyle.css";
 
 function Header() {
   const [nav, setNav] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const { cartItems, wishlistItems } = useContext(CartContext);
 
   // Sticky navbar on scroll
   useEffect(() => {
-    const changeValueOnScroll = () => {
-      const scrollValue = document?.documentElement?.scrollTop;
-      setNav(scrollValue > 100);
+    const handleScroll = () => {
+      const scrollTop = document.documentElement.scrollTop;
+      setNav(scrollTop > 100);
     };
 
-    window.addEventListener("scroll", changeValueOnScroll);
-    return () => window.removeEventListener("scroll", changeValueOnScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header>
-      <Navbar collapseOnSelect expand="lg" className={`${nav ? "sticky" : ""}`}>
+      <Navbar collapseOnSelect expand="lg" className={`navbar ${nav ? "sticky" : ""}`}>
         <Container>
+
+          {/* Logo */}
           <Navbar.Brand as={Link} to="/" className="logo">
             <img src={Logo} alt="Logo" className="img-fluid" />
           </Navbar.Brand>
 
-          {/* Icons Container */}
-          <div className="d-flex align-items-center order-lg-3">
+          {/* Desktop Search Bar */}
+          <div className="search-bar-container d-none d-lg-flex align-items-center">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search here..."
+            />
+            <i className="bi bi-search search-icon-inside"></i>
+          </div>
+
+          {/* Mobile Search Icon */}
+          <div className="mobile-search-wrapper d-lg-none">
+            {!showSearch && (
+              <div className="search-toggle-icon" onClick={() => setShowSearch(true)}>
+                <i className="bi bi-search"></i>
+              </div>
+            )}
+          </div>
+
+          {/* Floating Search Bar (Mobile) */}
+          {showSearch && (
+            <div className="floating-search-bar d-lg-none">
+              <input
+                type="text"
+                className="form-control floating-input"
+                placeholder="Search here..."
+              />
+              <i
+                className="bi bi-x-lg close-floating-icon"
+                onClick={() => setShowSearch(false)}
+              ></i>
+            </div>
+          )}
+
+          {/* Cart & Wishlist Icons */}
+          <div className="d-flex align-items-center order-lg-3 icon-group">
             <Nav.Link as={Link} to="/wishlist" className="px-2">
               <div className="wishlist">
                 <i className="bi bi-heart fs-5"></i>
@@ -44,9 +81,11 @@ function Header() {
               </div>
             </Nav.Link>
 
+            {/* Toggler Button */}
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           </div>
 
+          {/* Nav Links */}
           <Navbar.Collapse id="responsive-navbar-nav" className="order-lg-2">
             <Nav className="ms-auto">
               <Nav.Link as={Link} to="/">Home</Nav.Link>
@@ -56,6 +95,7 @@ function Header() {
               <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
             </Nav>
           </Navbar.Collapse>
+
         </Container>
       </Navbar>
     </header>

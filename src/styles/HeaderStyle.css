@@ -135,6 +135,181 @@ header {
     border-radius: 10px;
   }
 
+  
+/* ---------- SEARCH BAR STYLING ---------- */
+/* Desktop search bar container */
+.search-bar-container {
+  position: relative;
+  max-width: 300px;
+  margin-left: 20px;
+  margin-right: auto;
+}
+
+.search-bar-container input {
+  width: 100%;
+  border-radius: 25px;
+  padding: 6px 40px 6px 12px; /* space for icon */
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+/* Search icon inside input (desktop only) */
+.search-icon-inside {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  color: #666;
+}
+
+/* MOBILE SEARCH */
+.mobile-search-wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.search-toggle-icon {
+  font-size: 1.4rem;
+  color: #000;
+  cursor: pointer;
+}
+
+.mobile-search-wrapper.active .search-toggle-icon {
+  display: none;
+}
+
+.search-bar-mobile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 180px;
+}
+
+.search-bar-mobile input {
+  width: 100%;
+  border-radius: 20px;
+  padding: 6px 30px 6px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+}
+
+.search-bar-mobile .close-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #000;
+}
+.floating-search-bar {
+  position: absolute;
+  top: 60px; /* Adjust based on your header height */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%; /* Reduce overall width */
+  z-index: 2000;
+}
+
+.floating-search-bar .floating-input {
+  width: 100%;
+  padding: 4px 36px 4px 12px; /* Slightly smaller padding */
+  height: 36px; /* Reduce height */
+  font-size: 0.95rem;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  position: relative;
+}
+
+.floating-search-bar .close-floating-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  color: #000;
+  cursor: pointer;
+}
+
+
+@media (min-width: 992px) {
+  .mobile-search-wrapper {
+    display: none !important;
+  }
+}
+
+/* Large screen search bar container */
+@media (min-width: 992px) {
+  .search-bar-container {
+    position: relative;
+    width: 350px;
+    margin-left: 20px;
+  }
+
+  .search-bar-container input {
+    width: 100%;
+    border-radius: 25px;
+    padding: 6px 40px 6px 12px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+
+  .search-icon-inside {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.1rem;
+    color: #666;
+  }
+}
+
+/* Mobile floating search bar */
+@media (max-width: 991px) {
+  .mobile-search-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  .search-toggle-icon {
+    font-size: 1.4rem;
+    color: #000;
+    cursor: pointer;
+  }
+
+  .floating-search-bar {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    z-index: 2000;
+  }
+
+  .floating-input {
+    width: 100%;
+    padding: 6px 36px 6px 12px;
+    border-radius: 25px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    height: 40px;
+  }
+
+  .close-floating-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.1rem;
+    color: #000;
+    cursor: pointer;
+  }
+}
+
+
   /* Header CSS */
 /* ... (keep existing styles as they are) ... */
 
