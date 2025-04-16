@@ -47,16 +47,28 @@ const SpecialMenuSlider = () => {
       <div className="container">
         <h2 className="text-center mb-5 ">🍽️ Our Special Menu</h2>
         <Swiper
-          slidesPerView={3}
-          spaceBetween={30}
-          loop={true}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
-          modules={[Autoplay]}
-          className="mySwiper"
-        >
+  slidesPerView={3}
+  spaceBetween={30}
+  loop={true}
+  autoplay={{
+    delay: 5000,
+    disableOnInteraction: false,
+  }}
+  breakpoints={{
+    0: {
+      slidesPerView: 1,
+    },
+    576: {
+      slidesPerView: 2,
+    },
+    992: {
+      slidesPerView: 3,
+    },
+  }}
+  modules={[Autoplay]}
+  className="mySwiper"
+>
+
           {specialItems.map((item) => (
             <SwiperSlide key={item.id}>
               <div className="special-slide-card">
