@@ -48,6 +48,7 @@ const menuItems = [
     paragraph: "Soft rice cakes with spicy, tangy lentil curry.",
     price: 80,
     category: "South Indian",
+    type:"Veg",
   },
   {
     id: 2,
@@ -57,6 +58,8 @@ const menuItems = [
     paragraph: "Crispy rice crepe with spicy potato filling, served with sambar.",
     price: 100,
     category: "South Indian",
+    type:"Veg",
+
   },
   {
     id: 3,
@@ -66,6 +69,8 @@ const menuItems = [
     paragraph: "Comforting South Indian rice with curd and mild spices.",
     price: 80,
     category: "South Indian",
+    type:"Veg",
+
   },
   {
     id: 4,
@@ -75,6 +80,8 @@ const menuItems = [
     paragraph: "Crispy lentil fritters served with flavorful sambar.",
     price: 80,
     category: "South Indian",
+    type:"Veg",
+
   },
   {
     id: 5,
@@ -84,6 +91,8 @@ const menuItems = [
     paragraph: "Grilled paneer cubes marinated in spicy yogurt mix.",
     price: 150,
     category: "Starter",
+    type:"Veg",
+
   }, {
     id: 6,
     image: image6,
@@ -92,6 +101,8 @@ const menuItems = [
     paragraph: "Grilled paneer cubes marinated in spicy yogurt mix.",
     price: 180,
     category: "Starter",
+    type:"Veg",
+
   },
   {
     id: 7,
@@ -101,6 +112,7 @@ const menuItems = [
     paragraph: "Crispy fried chicken wings with spicy marinade.",
     price: 200,
     category: "Starter",
+    type:"Non-Veg",
   },
   {
     id: 8,
@@ -110,6 +122,8 @@ const menuItems = [
     paragraph: "Crispy golden potato fries, lightly salted.",
     price: 80,
     category: "Starter",
+    type:"Veg",
+
   },
   {
     id: 9,
@@ -119,6 +133,8 @@ const menuItems = [
     paragraph: "Creamy mushroom soup with rich, earthy flavors.",
     price: 120,
     category: "Soup",
+    type:"Veg",
+
   },
   {
     id: 10,
@@ -128,6 +144,8 @@ const menuItems = [
     paragraph: "Tangy and flavorful tomato soup, rich and comforting.",
     price: 120,
     category: "Soup",
+    type:"Veg",
+
   },
   {
     id: 11,
@@ -137,6 +155,8 @@ const menuItems = [
     paragraph: "Nutritious vegetable soup with mixed seasonal veggies.",
     price: 150,
     category: "Soup",
+    type:"Veg",
+
   },
   {
     id: 12,
@@ -146,6 +166,7 @@ const menuItems = [
     paragraph: "Savory chicken noodle soup with tender meat and vegetables.",
     price: 180,
     category: "Soup",
+    type:"Non-Veg"
   },
   
   {
@@ -156,6 +177,8 @@ const menuItems = [
     paragraph: "Cheesy vegetable pizza topped with fresh veggies and herbs.",
     price: 180,
     category: "Pizza",
+    type:"Veg",
+
   },
   
   {
@@ -166,6 +189,7 @@ const menuItems = [
     paragraph: "Juicy chicken pizza loaded with cheese and flavorful toppings.",
     price: 280,
     category: "Pizza",
+    type:"Non-Veg",
   },
   
   {
@@ -176,6 +200,8 @@ const menuItems = [
     paragraph: "Classic cheese pizza with a golden crust, gooey mozzarella.",
     price: 180,
     category: "Pizza",
+    type:"Veg",
+
   },
   {
     id: 16,
@@ -185,6 +211,8 @@ const menuItems = [
     paragraph: "Pepperoni pizza topped with spicy, cheesy, golden crust.",
     price: 180,
     category: "Pizza",
+    type:"Non-Veg",
+
   },
   {
     id: 17,
@@ -194,6 +222,8 @@ const menuItems = [
     paragraph: "Chicken roll with spiced chicken and sauces in a soft wrap.",
     price: 120,
     category: "Roll",
+    type:"Non-Veg",
+
   },
   {
     id: 18,
@@ -203,6 +233,8 @@ const menuItems = [
     paragraph: "Vegetable roll with mixed veggies and flavorful sauces.",
     price: 100,
     category: "Roll",
+    type:"Veg",
+
   },
   {
     id: 19,
@@ -212,6 +244,8 @@ const menuItems = [
     paragraph: "Crispy spring roll filled with seasoned vegetables.",
     price: 120,
     category: "Roll",
+    type:"Veg",
+
   },
   {
     id: 20,
@@ -221,6 +255,8 @@ const menuItems = [
     paragraph: "Spiced paneer wrapped in a soft paratha roll.",
     price: 150,
     category: "Roll",
+    type:"Veg",
+
   },
   {
     id: 21,
@@ -230,6 +266,8 @@ const menuItems = [
     paragraph: "Assorted cookies served on a dessert plate.",
     price: 250,
     category: "Dessert",
+    type:"Veg",
+
   },
   {
     id: 22,
@@ -239,6 +277,8 @@ const menuItems = [
     paragraph: "Rich and creamy chocolate-flavored ice cream.",
     price: 150,
     category: "Dessert",
+    type:"Veg",
+
   },
   {
     id: 23,
@@ -248,6 +288,8 @@ const menuItems = [
     paragraph: "Mini dessert cups filled with rich chocolate delight.",
     price: 150,
     category: "Dessert",
+    type:"Veg",
+
   },
   {
     id: 24,
@@ -257,10 +299,13 @@ const menuItems = [
     paragraph: "Moist and flavorful cake packed with dried fruits and spices.",
     price: 250,
     category: "Dessert",
+    type:"Veg",
+
   },
   
   // Add more items like Soup, Pizza, Roll, Dessert...
 ];
+
 
 
 const renderRatingIcons = (rating) => {
@@ -271,10 +316,18 @@ const renderRatingIcons = (rating) => {
 
 const Menu = () => {
   const [selectedCategory, setSelectedCategory] = useState("All Menu");
+  const [isVeg, setIsVeg] = useState(true); 
+  const [showFilterPopup, setShowFilterPopup] = useState(false);
+  const [activeTab, setActiveTab] = useState("sort");
+  
 
-  const filteredItems = selectedCategory === "All Menu"
-    ? menuItems
-    : menuItems.filter(item => item.category === selectedCategory);
+  const filteredItems = menuItems.filter(item => {
+    const categoryMatch = selectedCategory === "All Menu" || item.category === selectedCategory;
+    const typeMatch = isVeg ? item.type === "Veg" : item.type === "Non-Veg";
+    return categoryMatch && typeMatch;
+  });
+  
+    // true = Veg, false = Non-Veg
 
   return (
     <>
@@ -289,6 +342,30 @@ const Menu = () => {
                 </Nav.Link>
               </Nav.Item>
             ))}
+            <div className='menu-top-bar'>
+            <div className="filter-button-container">
+<button className="filter-btn" onClick={() => setShowFilterPopup(true)}>
+  <i className="bi bi-funnel-fill me-2"></i> Filter
+</button>
+
+  </div>
+            <div className="veg-toggle-container text-center mb-4">
+  <label className="veg-toggle-switch-with-icon">
+    <input
+      type="checkbox"
+      checked={isVeg}
+      onChange={() => setIsVeg(!isVeg)}
+    />
+    <span className="slider-icon">
+      <span className="icon">{isVeg ? "🥦" : "🍗"}</span>
+    </span>
+  </label>
+</div>
+
+</div>
+
+
+
           </Nav>
 
           <Row>
@@ -304,6 +381,86 @@ const Menu = () => {
                 renderRatingIcons={renderRatingIcons}
               />
             ))}
+            {showFilterPopup && (
+  <div className="filter-modal">
+    <div className="filter-box">
+      <div className="filter-header">
+        <h5>Filters and sorting</h5>
+        <button onClick={() => setShowFilterPopup(false)} className="close-x">✕</button>
+      </div>
+      <div className="filter-body">
+        {/* Sidebar Tabs */}
+        <div className="filter-tabs">
+          <button onClick={() => setActiveTab("sort")} className={activeTab === "sort" ? "active" : ""}>
+            <i className="bi bi-sort-down"></i> Sort By
+          </button>
+          <button onClick={() => setActiveTab("time")} className={activeTab === "time" ? "active" : ""}>
+            <i className="bi bi-clock-history"></i> Time
+          </button>
+          <button onClick={() => setActiveTab("rating")} className={activeTab === "rating" ? "active" : ""}>
+            <i className="bi bi-star-fill"></i> Rating
+          </button>
+          <button onClick={() => setActiveTab("offers")} className={activeTab === "offers" ? "active" : ""}>
+            <i className="bi bi-percent"></i> Offers
+          </button>
+          <button onClick={() => setActiveTab("price")} className={activeTab === "price" ? "active" : ""}>
+            ₹ Dish Price
+          </button>
+        </div>
+
+        {/* Right Pane Content */}
+        <div className="filter-content">
+          {activeTab === "sort" && (
+            <>
+              <h6>Sort by</h6>
+              <p className="option">Relevance</p>
+              <p className="option">Price - Low to High</p>
+              <p className="option">Price - High to Low</p>
+            </>
+          )}
+          {activeTab === "time" && (
+            <>
+              <h6>Time</h6>
+              <div className="option-box">Schedule</div>
+              <div className="option-box">Quick</div>
+              <div className="option-box">Under 30 mins</div>
+            </>
+          )}
+          {activeTab === "rating" && (
+            <>
+              <h6>Restaurant Rating</h6>
+              <div className="option-box">Rated 3.5+</div>
+              <div className="option-box">Rated 4.0+</div>
+            </>
+          )}
+          {activeTab === "offers" && (
+            <>
+              <h6>Offers</h6>
+              <div className="option-box">50% or more</div>
+              <div className="option-box">Flat ₹100 OFF</div>
+            </>
+          )}
+          {activeTab === "price" && (
+            <>
+              <h6>Dish Price</h6>
+              <div className="option-box">Under ₹100</div>
+              <div className="option-box">₹100 - ₹300</div>
+              <div className="option-box">₹300 and above</div>
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* Footer Buttons */}
+      <div className="filter-footer">
+        <button onClick={() => setShowFilterPopup(false)} className="close-btn">Close</button>
+        <button className="result-btn">Show Results</button>
+      </div>
+    </div>
+  </div>
+)}
+
+
           </Row>
         </Container>
       </section>
