@@ -14,6 +14,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
+
 //import Header from "../components/layout/Header";
 
 
@@ -25,6 +26,7 @@ function App() {
     <CartProvider>
       <ParallaxProvider> {/* 👈 Wrap everything here */}
         <Router>
+         
           <ScrollToTop/>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -35,6 +37,7 @@ function App() {
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/cart" element={<Cart />} />
           </Routes>
+         
         </Router>
       </ParallaxProvider>
     </CartProvider>

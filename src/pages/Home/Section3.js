@@ -11,6 +11,7 @@ import Image8 from '../../assets/menu/burger-18.jpg';
 import Cards from '../../components/Layout/Cards';
 import { Link } from 'react-router-dom';
 
+
   // Mock Data Cards
   const mockData = [
     {
@@ -20,6 +21,7 @@ import { Link } from 'react-router-dom';
       paragraph: "Chicken breast, chilli sauce, tomatoes, pickles, coleslaw",
       rating: 5,
       price: 150,
+      type:"NonVeg",
     },
     {
       id: "102",
@@ -28,6 +30,7 @@ import { Link } from 'react-router-dom';
       paragraph: "House patty, cheddar cheese, bacon, onion, mustard",
       rating: 4.5,
       price: 99,
+      type:"NonVeg",
     },
     {
       id: "103",
@@ -36,6 +39,7 @@ import { Link } from 'react-router-dom';
       paragraph: "American cheese, tomato relish, avocado, lettuce, red onion",
       rating: 4,
       price: 69,
+      type:"NonVeg",
     },
     {
       id: "104",
@@ -44,6 +48,7 @@ import { Link } from 'react-router-dom';
       paragraph: "House patty, cheddar cheese, bacon, onion, mustard",
       rating: 3.5,
       price: 99,
+      type:"veg",
     },
     {
       id: "105",
@@ -52,6 +57,7 @@ import { Link } from 'react-router-dom';
       paragraph: "2 patties, cheddar cheese, mustard, pickles, tomatoes",
       rating: 3.0,
       price: 59,
+      type:"veg",
     },
     {
       id: "106",
@@ -60,6 +66,7 @@ import { Link } from 'react-router-dom';
       paragraph: "Turkey, cheddar cheese, onion, lettuce, tomatoes, pickles",
       rating: 3,
       price: 90,
+      type:"NonVeg",
     },
     {
       id: "107",
@@ -68,6 +75,7 @@ import { Link } from 'react-router-dom';
       paragraph: "patty, cheddar cheese, onion, lettuce, tomatoes, pickles",
       rating: 2.5,
       price: 99,
+      type:"veg",
     },
     {
       id: "108",
@@ -76,6 +84,7 @@ import { Link } from 'react-router-dom';
       paragraph: "cheddar cheese, ketchup, mustard, pickles, onion",
       rating: 2.0,
       price: 89,
+      type:"veg",
     },
     // Add more mock data objects as needed
   ];

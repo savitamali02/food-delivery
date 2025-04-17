@@ -7,6 +7,7 @@ import PhonePeIcon from '../../icons/phonepe.jpg';
 import GPayIcon from '../../icons/googlepay.jpg';
 import MyQRCodeImg from '../../icons/myqr.jpeg';
 import "../../styles/CartStyle.css";
+//import AddressSection from '../../components/Layout/AddressSection';
 
 function Cart() {
   const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
@@ -19,10 +20,74 @@ function Cart() {
   const [otp, setOtp] = useState("");
   const [verified, setVerified] = useState(false);
 
-  const [addresses, setAddresses] = useState([]);
-  const [newAddress, setNewAddress] = useState("");
-  const [selectedAddressIndex, setSelectedAddressIndex] = useState(null);
-  const [editModeIndex, setEditModeIndex] = useState(null);
+  // Add these at the top of the component
+const [showAddressModal, setShowAddressModal] = useState(false);
+const [addresses, setAddresses] = useState([]);
+const [selectedAddress, setSelectedAddress] = useState(null);
+const [editingIndex, setEditingIndex] = useState(null);
+const [newAddress, setNewAddress] = useState({
+  name: '',
+  phone: '',
+  pincode: '',
+  locality: '',
+  address: '',
+  city: '',
+  state: '',
+  landmark: '',
+});
+
+useEffect(() => {
+  const savedAddresses = JSON.parse(localStorage.getItem('addresses')) || [];
+  setAddresses(savedAddresses);
+}, []);
+
+const handleAddressModalOpen = () => {
+  setEditingIndex(null);
+  setNewAddress({
+    name: '',
+    phone: '',
+    pincode: '',
+    locality: '',
+    address: '',
+    city: '',
+    state: '',
+    landmark: '',
+  });
+  setShowAddressModal(true);
+};
+
+const handleAddressModalClose = () => {
+  setShowAddressModal(false);
+};
+
+const handleSaveAddress = () => {
+  const updatedAddresses = [...addresses];
+  if (editingIndex !== null) {
+    updatedAddresses[editingIndex] = newAddress;
+  } else {
+    updatedAddresses.push(newAddress);
+  }
+
+  setAddresses(updatedAddresses);
+  localStorage.setItem('addresses', JSON.stringify(updatedAddresses));
+  setShowAddressModal(false);
+};
+
+const handleEditAddress = (index) => {
+  setEditingIndex(index);
+  setNewAddress(addresses[index]);
+  setShowAddressModal(true);
+};
+
+const handleDeleteAddress = (index) => {
+  const updatedAddresses = addresses.filter((_, i) => i !== index);
+  setAddresses(updatedAddresses);
+  localStorage.setItem('addresses', JSON.stringify(updatedAddresses));
+};
+
+const handleSelectAddress = (address) => {
+  setSelectedAddress(address);
+};
 
   const [codPhone, setCodPhone] = useState("");
   const [codOtp, setCodOtp] = useState("");
@@ -137,64 +202,66 @@ function Cart() {
 
             {/* Step 2: Delivery Address */}
             <Accordion.Item eventKey="2">
-              <Accordion.Header>2. Delivery Address</Accordion.Header>
-              <Accordion.Body>
-                {addresses.length === 0 && <p>No address added yet.</p>}
-                {addresses.map((addr, index) => (
-                  <div key={index} className="border rounded p-2 mb-2">
-                    <Form.Check
-                      type="radio"
-                      name="selectedAddress"
-                      id={`addr-${index}`}
-                      label={addr}
-                      checked={selectedAddressIndex === index}
-                      onChange={() => setSelectedAddressIndex(index)}
-                    />
-                    <div className="mt-2">
-                      <Button size="sm" variant="outline-primary" className="me-2" onClick={() => {
-                        setNewAddress(addr);
-                        setEditModeIndex(index);
-                      }}>
-                        Edit
-                      </Button>
-                      <Button size="sm" variant="outline-danger" onClick={() => {
-                        const updated = addresses.filter((_, i) => i !== index);
-                        setAddresses(updated);
-                        if (selectedAddressIndex === index) setSelectedAddressIndex(null);
-                      }}>
-                        Delete
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-                <Form.Group className="mt-3">
-                  <Form.Label>{editModeIndex !== null ? "Edit Address" : "Add New Address"}</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={2}
-                    value={newAddress}
-                    onChange={(e) => setNewAddress(e.target.value)}
-                  />
-                  <Button
-                    className="mt-2"
-                    onClick={() => {
-                      if (newAddress.trim() === "") return;
-                      if (editModeIndex !== null) {
-                        const updated = [...addresses];
-                        updated[editModeIndex] = newAddress;
-                        setAddresses(updated);
-                        setEditModeIndex(null);
-                      } else {
-                        setAddresses([...addresses, newAddress]);
-                      }
-                      setNewAddress("");
-                    }}
-                  >
-                    {editModeIndex !== null ? "Save Changes" : "Add Address"}
-                  </Button>
-                </Form.Group>
-              </Accordion.Body>
-            </Accordion.Item>
+  <Accordion.Header>2: Delivery Address</Accordion.Header>
+  <Accordion.Body>
+    <Button variant="success" onClick={handleAddressModalOpen}>
+      Add New Address
+    </Button>
+    <div className="mt-3">
+      {addresses.length === 0 && <p>No addresses saved.</p>}
+      {addresses.map((addr, idx) => (
+        <div
+          key={idx}
+          className={`card mt-3 ${selectedAddress === addr ? 'border-primary' : ''}`}
+        >
+          <div className="card-body">
+            <h5 className="card-title">{addr.name}</h5>
+            <p className="card-text">
+              {addr.address}, {addr.locality}, {addr.city}, {addr.state} - {addr.pincode}
+              <br />
+              Landmark: {addr.landmark}
+              <br />
+              Phone: {addr.phone}
+            </p>
+            <Button
+              variant="outline-primary"
+              size="sm"
+              onClick={() => handleSelectAddress(addr)}
+            >
+              Deliver Here
+            </Button>{' '}
+            <Button
+              variant="outline-warning"
+              size="sm"
+              onClick={() => handleEditAddress(idx)}
+            >
+              Edit
+            </Button>{' '}
+            <Button
+              variant="outline-danger"
+              size="sm"
+              onClick={() => handleDeleteAddress(idx)}
+            >
+              Delete
+            </Button>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {selectedAddress && (
+      <div className="mt-4 p-3 border bg-light">
+        <h6>Selected Address:</h6>
+        <p>
+          {selectedAddress.name}, {selectedAddress.address}, {selectedAddress.locality}, {selectedAddress.city}, {selectedAddress.state} - {selectedAddress.pincode}
+          <br />
+          Landmark: {selectedAddress.landmark}, Phone: {selectedAddress.phone}
+        </p>
+      </div>
+    )}
+  </Accordion.Body>
+</Accordion.Item>
+
 
             {/* Step 3: Order Summary */}
             <Accordion.Item eventKey="3">
@@ -206,9 +273,17 @@ function Cart() {
                   ))}
                 </ul>
                 <h5>Total: ₹{totalAmount}</h5>
-                {selectedAddressIndex !== null && (
-                  <p className="mt-3"><strong>Delivering to:</strong> {addresses[selectedAddressIndex]}</p>
-                )}
+                {selectedAddress && (
+  <div className="mt-3">
+    <h6>Delivering to:</h6>
+    <p>
+      {selectedAddress.name}, {selectedAddress.address}, {selectedAddress.locality}, {selectedAddress.city}, {selectedAddress.state} - {selectedAddress.pincode}
+      <br />
+      Landmark: {selectedAddress.landmark}, Phone: {selectedAddress.phone}
+    </p>
+  </div>
+)}
+
               </Accordion.Body>
             </Accordion.Item>
 
@@ -335,6 +410,33 @@ function Cart() {
           <Button variant="success" onClick={() => setShowCodSuccessModal(false)}>Close</Button>
         </Modal.Footer>
       </Modal>
+      <Modal show={showAddressModal} onHide={handleAddressModalClose}>
+  <Modal.Header closeButton>
+    <Modal.Title>{editingIndex !== null ? 'Edit Address' : 'Add New Address'}</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    {Object.keys(newAddress).map((field) => (
+      <Form.Group key={field} className="mb-2">
+        <Form.Label>{field.charAt(0).toUpperCase() + field.slice(1)}</Form.Label>
+        <Form.Control
+          type="text"
+          value={newAddress[field]}
+          onChange={(e) =>
+            setNewAddress({ ...newAddress, [field]: e.target.value })
+          }
+        />
+      </Form.Group>
+    ))}
+  </Modal.Body>
+  <Modal.Footer>
+    <Button variant="secondary" onClick={handleAddressModalClose}>
+      Cancel
+    </Button>
+    <Button variant="primary" onClick={handleSaveAddress}>
+      Save Address
+    </Button>
+  </Modal.Footer>
+</Modal>
 
       <Footer />
     </>

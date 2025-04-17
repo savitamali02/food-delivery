@@ -8,6 +8,7 @@ function Cards({ id, image, rating, title, paragraph, price, renderRatingIcons }
   const product = { id, image, rating, title, paragraph, price };
 
   const [isWishlisted, setIsWishlisted] = useState(false);
+  
 
   // 💡 Sync local heart state with global wishlist
   useEffect(() => {

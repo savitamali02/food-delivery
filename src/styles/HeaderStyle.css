@@ -134,7 +134,40 @@ header {
   table img {
     border-radius: 10px;
   }
-
+  .suggestions-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    list-style: none;
+    padding: 0;
+    margin-top: 4px;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 3000;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .suggestions-list li {
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .suggestions-list li:hover {
+    background-color: #f7f7f7;
+  }
+  
+  /* Mobile specific styling */
+  .suggestions-list.mobile {
+    top: 100%;
+    background-color: #fff;
+    width: 100%;
+  }
+  
   
 /* ---------- SEARCH BAR STYLING ---------- */
 /* Desktop search bar container */
@@ -232,7 +265,7 @@ header {
   color: #000;
   cursor: pointer;
 }
-
+/* toggle button */
 
 @media (min-width: 992px) {
   .mobile-search-wrapper {
