@@ -319,13 +319,32 @@ const Menu = () => {
   const [isVeg, setIsVeg] = useState(true); 
   const [showFilterPopup, setShowFilterPopup] = useState(false);
   const [activeTab, setActiveTab] = useState("sort");
-  
+  const [priceFilter, setPriceFilter] = useState("all");
+const [ratingFilter, setRatingFilter] = useState("all");
 
+
+
+  // const filteredItems = menuItems.filter(item => {
+  //   const categoryMatch = selectedCategory === "All Menu" || item.category === selectedCategory;
+  //   const typeMatch = isVeg ? item.type === "Veg" : item.type === "Non-Veg";
+  //   return categoryMatch && typeMatch;
+  // });
   const filteredItems = menuItems.filter(item => {
     const categoryMatch = selectedCategory === "All Menu" || item.category === selectedCategory;
     const typeMatch = isVeg ? item.type === "Veg" : item.type === "Non-Veg";
-    return categoryMatch && typeMatch;
+  
+    let priceMatch = true;
+    if (priceFilter === "under100") priceMatch = item.price < 100;
+    else if (priceFilter === "100to300") priceMatch = item.price >= 100 && item.price <= 300;
+    else if (priceFilter === "above300") priceMatch = item.price > 300;
+  
+    let ratingMatch = true;
+    if (ratingFilter === "3.5") ratingMatch = item.rating >= 3.5;
+    else if (ratingFilter === "4.0") ratingMatch = item.rating >= 4.0;
+  
+    return categoryMatch && typeMatch && priceMatch && ratingMatch;
   });
+  
   
     // true = Veg, false = Non-Veg
 
@@ -429,8 +448,9 @@ const Menu = () => {
           {activeTab === "rating" && (
             <>
               <h6>Restaurant Rating</h6>
-              <div className="option-box">Rated 3.5+</div>
-              <div className="option-box">Rated 4.0+</div>
+              <div className="option-box" onClick={() => setRatingFilter("3.5")}>Rated 3.5+</div>
+<div className="option-box" onClick={() => setRatingFilter("4.0")}>Rated 4.0+</div>
+
             </>
           )}
           {activeTab === "offers" && (
@@ -443,9 +463,10 @@ const Menu = () => {
           {activeTab === "price" && (
             <>
               <h6>Dish Price</h6>
-              <div className="option-box">Under ₹100</div>
-              <div className="option-box">₹100 - ₹300</div>
-              <div className="option-box">₹300 and above</div>
+              <div className="option-box" onClick={() => setPriceFilter("under100")}>Under ₹100</div>
+<div className="option-box" onClick={() => setPriceFilter("100to300")}>₹100 - ₹300</div>
+<div className="option-box" onClick={() => setPriceFilter("above300")}>₹300 and above</div>
+
             </>
           )}
         </div>
@@ -454,7 +475,15 @@ const Menu = () => {
       {/* Footer Buttons */}
       <div className="filter-footer">
         <button onClick={() => setShowFilterPopup(false)} className="close-btn">Close</button>
-        <button className="result-btn">Show Results</button>
+        <button
+  className="result-btn"
+  onClick={() => {
+    setShowFilterPopup(false); // ✅ Closes the filter popup
+  }}
+>
+  Show Results
+</button>
+
       </div>
     </div>
   </div>
