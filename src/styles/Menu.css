@@ -186,7 +186,7 @@
   .filter-btn {
     padding: 8px 18px;
     font-size: 20px;
-    border-radius: 12px;
+    border-radius: 10px;
     border: none;
     cursor: pointer;
     background-color: #f7be27;
@@ -363,4 +363,8 @@
 .filter-content .option-box:hover {
   background: #ffeeba;
 }
-  
+@media (max-width: 768px) {
+  .filter-modal {
+    font-size: 14px !important; /* or 12px based on your design */
+  }
+}
